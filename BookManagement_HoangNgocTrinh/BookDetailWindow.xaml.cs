@@ -90,6 +90,7 @@ namespace BookManagement_HoangNgocTrinh
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!CheckValidInput()) return;
             Book book = new Book();
             book.BookId = int.Parse(BookIdTextBox.Text);
             book.BookName = BookNameTextBox.Text;
@@ -99,6 +100,8 @@ namespace BookManagement_HoangNgocTrinh
             book.Price = double.Parse(PriceTextBox.Text);
             book.Author = AuthorTextBox.Text;
             BookCategory bookCategory = this._categoryService.GetALlBookCategory().ToList().FirstOrDefault(x => x.BookGenreType == BookCategoryIdComboBox.SelectedItem.ToString());
+
+
 
             if (bookCategory != null)
             {
@@ -118,6 +121,79 @@ namespace BookManagement_HoangNgocTrinh
             }
             EditedOne = null;
             this.Close();
+        }
+
+        private Boolean CheckValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(BookIdTextBox.Text.Trim())){
+                MessageBox.Show("Id must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!int.TryParse(BookIdTextBox.Text, out int bookId) || bookId < 0)
+            {
+                MessageBox.Show("Id must be a number!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(BookNameTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(DescriptionTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(PublicationDateDatePicker.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(QuantityTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+
+            if (!int.TryParse(QuantityTextBox.Text, out int quantity) || quantity < 0)
+            {
+                MessageBox.Show("Quantity must be a positive integer!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(PriceTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!double.TryParse(PriceTextBox.Text, out double price) || price < 0)
+            {
+                MessageBox.Show("Price must be a positive number!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(AuthorTextBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BookCategoryIdComboBox.Text.Trim()))
+            {
+                MessageBox.Show("Book name must be filled!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+
+            //if (string.IsNullOrWhiteSpace(BookIdTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(BookNameTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(DescriptionTextBox.Text.Trim()) || PublicationDateDatePicker.SelectedDate == null || string.IsNullOrWhiteSpace(QuantityTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(PriceTextBox.Text.Trim()) || string.IsNullOrWhiteSpace(AuthorTextBox.Text.Trim()) || BookCategoryIdComboBox.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Please fill all the fields!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    return false;
+            //}
         }
     }
 }
