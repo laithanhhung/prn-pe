@@ -10,11 +10,7 @@ namespace BookManagement.BLL.services
 {
     public class UserService
     {
-        private UserRepo UserRepo = new UserRepo();
-        public List<UserAccount> GetAllUser()
-        {
-            return UserRepo.GetAllUser();
-        }
+        private UserRepo UserRepo = new UserRepo()
         public UserAccount Login(string email, string password)
         {
             return UserRepo.Login(email, password);

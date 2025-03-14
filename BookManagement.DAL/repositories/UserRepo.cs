@@ -10,11 +10,6 @@ namespace BookManagement.DAL.repositories
     public class UserRepo
     {
         private BookManagementDbContext _contextDb;
-        public List<UserAccount> GetAllUser()
-        {
-            this._contextDb = new BookManagementDbContext();
-            return this._contextDb.UserAccounts.ToList();
-        }
         public UserAccount Login(string email, string password)
         {
             this._contextDb = new BookManagementDbContext();
