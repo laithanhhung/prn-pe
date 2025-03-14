@@ -11,9 +11,9 @@ namespace BookManagement.BLL.services
     public class UserService
     {
         private UserRepo UserRepo = new UserRepo()
-        public UserAccount Login(string email, string password)
+        public UserAccount GetOne(string email, string password)
         {
-            return UserRepo.Login(email, password);
+            return UserRepo.GetOne(email, password);
         }
     }
 }

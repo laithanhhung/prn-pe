@@ -36,7 +36,7 @@ namespace BookManagement_HoangNgocTrinh
             //Bước 4: Nếu không thì thông báo lỗi
             string email = EmailTextBox.Text;
             string password = PasswordTextBox.Text;
-            UserAccount user = this._userService.Login(email, password);
+            UserAccount user = this._userService.GetOne(email, password);
             if (user.Role == 1)
             {
                 MainWindow mainWindow = new MainWindow();
