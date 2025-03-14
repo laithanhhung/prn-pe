@@ -37,33 +37,36 @@ namespace BookManagement_HoangNgocTrinh
             string email = EmailTextBox.Text;
             string password = PasswordTextBox.Text;
             UserAccount user = this._userService.GetOne(email, password);
-            if (user.Role == 1)
+            if (user == null)
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.User = user;
-                mainWindow.Show();
-                this.Close();
+                MessageBox.Show("Email or password is incorrect!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else if (user.Role == 2 || user.Role == 3)
-            {
 
+            if (user.Role == 3)
+            {
+                MessageBox.Show("You have no permission to access this function!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else if (user.Role == 2)
+            {
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.User = user;
-                mainWindow.HeaderLabel.Content = "You have no permission to access this function!.";
-                mainWindow.BookNameTextBox.IsEnabled = false;
-                mainWindow.DescriptionTextBox.IsEnabled = false;
-                mainWindow.SearchButton.IsEnabled = false;
                 mainWindow.CreateButton.IsEnabled = false;
                 mainWindow.UpdateButton.IsEnabled = false;
                 mainWindow.DeleteButton.IsEnabled = false;
+                mainWindow.HeaderLabel.Content = "Welcome Staff";
                 mainWindow.Show();
-                this.Close();
-
+                return;
             }
             else
             {
-                MessageBox.Show("Email or password is incorrect!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.HeaderLabel.Content = "Welcome Admin";
+                mainWindow.Show();
+
             }
+            this.Close();
+
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)

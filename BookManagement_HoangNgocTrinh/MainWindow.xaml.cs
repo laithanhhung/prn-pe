@@ -20,7 +20,6 @@ namespace BookManagement_HoangNgocTrinh
     public partial class MainWindow : Window
     {
         private BookService _service = new();
-        public UserAccount? User { get; set; } = null;
 
         public MainWindow()
         {
@@ -29,14 +28,8 @@ namespace BookManagement_HoangNgocTrinh
 
         private void BookMainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (User.Role == 1)
-            {
-                BookListDataGrid.ItemsSource = _service.GetAllBooks();
-            }
-            //hàm này sẽ tự chạy khi của sổ MainWindow mở ra
-            //trả sẽ gọi service giúp để lấy toàn bộ data từ table book chuyển vào fill váo cái grid
-            //vì ta còn xài CRUD BOOK cho nên ta sẽ khai báo biến BOOKSERVICE ở ngoài hàm ngày để còn dùng được trong toàn bộ của sổ này
 
+            BookListDataGrid.ItemsSource = _service.GetAllBooks();
         }
 
         private void CreateButton_Click(object sender, RoutedEventArgs e)
