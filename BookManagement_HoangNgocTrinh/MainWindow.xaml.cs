@@ -1,6 +1,7 @@
 ﻿using Azure.Messaging;
 using BookManagement.BLL.services;
 using BookManagement.DAL.Entity;
+using System.Buffers;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -96,10 +97,19 @@ namespace BookManagement_HoangNgocTrinh
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            string searchBookName = BookNameTextBox.Text;
-            string searchDescription = DescriptionTextBox.Text;
-            List<Book> listBooks = _service.GetAllBooks().FindAll(x => x.BookName.Contains(searchBookName) && x.Description.Contains(searchDescription));
+            //Bước 1: Lấy thông tin search
+            string searchValue = SearchTextBox.Text;
+            //Bước 2: Search không phân biệt hoa thường
+            searchValue = searchValue.ToLower();
+            //Bước 3: Gọi service search
+            List<Book> listBooks = _service.SearchBookByNameOrDesc(searchValue);
+            //Bước 4: Fill vào DataGrid
             FillDataGrid(listBooks);
+            //Bước 5: Nếu không tìm thấy thì thông báo
+            if (listBooks.Count == 0)
+            {
+                MessageBox.Show("No result found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)

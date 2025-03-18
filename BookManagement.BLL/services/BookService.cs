@@ -23,5 +23,7 @@ namespace BookManagement.BLL.services
         public void DeleteBook(Book book) => _bookRepo.DeleteBook(book);
 
         public void UpdateBook(Book book) => _bookRepo.UpdateBook(book);
+
+        public List<Book> SearchBookByNameOrDesc(string searchValue) => _bookRepo.SearchBookByNameOrDesc(searchValue);
     }
 }

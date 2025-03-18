@@ -56,7 +56,6 @@ namespace BookManagement_HoangNgocTrinh
                 mainWindow.DeleteButton.IsEnabled = false;
                 mainWindow.HeaderLabel.Content = "Welcome Staff";
                 mainWindow.Show();
-                return;
             }
             else
             {

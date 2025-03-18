@@ -51,5 +51,16 @@ namespace BookManagement.DAL.repositories
             _dbContext.Books.Update(book);
             _dbContext.SaveChanges();
         }
+
+        public List<Book> SearchBookByNameOrDesc(string searchValue)
+        {
+            _dbContext = new BookManagementDbContext();
+            //mặc định trả về hết tất cả sách
+            if (searchValue == "")
+            {
+                return _dbContext.Books.ToList();
+            }
+            return _dbContext.Books.Where(b => b.BookName.Contains(searchValue) || b.Description.Contains(searchValue)).ToList();
+        }
     }
 }

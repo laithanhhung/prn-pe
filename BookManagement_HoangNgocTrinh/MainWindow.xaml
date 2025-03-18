@@ -22,10 +22,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <Rectangle HorizontalAlignment="Left" Height="95" Margin="39,144,0,0" Stroke="Black" VerticalAlignment="Top" Width="1145" Fill="#ffff00"/>
-        <Label Content="Book Name" HorizontalAlignment="Left" Height="45" Margin="73,174,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="BookNameTextBox" HorizontalAlignment="Left" Height="45" Margin="193,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" TabIndex="0"/>
-        <Label Content="Book Desc" HorizontalAlignment="Left" Height="45" Margin="514,174,0,0" VerticalAlignment="Top" Width="107" Foreground="#ff4500"/>
-        <TextBox x:Name="DescriptionTextBox" HorizontalAlignment="Left" Height="45" Margin="628,170,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="275" TabIndex="1"/>
+        <Label Content="Book Name/ Description&#xD;&#xA;" HorizontalAlignment="Left" Height="45" Margin="55,169,0,0" VerticalAlignment="Top" Width="227" Foreground="#ff4500"/>
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="45" Margin="290,169,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="687" TabIndex="0"/>
         <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Left" Height="50" Margin="989,166,0,0" VerticalAlignment="Top" Width="165" TabIndex="2" Click="SearchButton_Click"/>
 
         <Button x:Name="CreateButton" Content="Create Book" HorizontalAlignment="Left" Height="50" Margin="1019,319,0,0" VerticalAlignment="Top" Width="165" TabIndex="4" Style="{StaticResource ButtonYellow}" Click="CreateButton_Click" />
