@@ -60,7 +60,7 @@ namespace BookManagement.DAL.repositories
             {
                 return _dbContext.Books.ToList();
             }
-            return _dbContext.Books.Where(b => b.BookName.Contains(searchValue) || b.Description.Contains(searchValue)).ToList();
+            return _dbContext.Books.Where(b => b.BookName.Contains(searchValue.ToLower()) || b.Description.Contains(searchValue.ToLower())).ToList();
         }
     }
 }
