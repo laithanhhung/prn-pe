@@ -101,13 +101,14 @@ namespace BookManagement_HoangNgocTrinh
             string searchValue = SearchTextBox.Text;
             //Bước 2: Gọi service search
             List<Book> listBooks = _service.SearchBookByNameOrDesc(searchValue);
-            //Bước 3: Fill vào DataGrid
-            FillDataGrid(listBooks);
-            //Bước 4: Nếu không tìm thấy thì thông báo
+            //Bước 3: Nếu không tìm thấy thì thông báo
             if (listBooks.Count == 0)
             {
                 MessageBox.Show("No result found!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
+            //Bước 4: Fill vào DataGrid
+            FillDataGrid(listBooks);
         }
 
         private void QuitButton_Click(object sender, RoutedEventArgs e)
